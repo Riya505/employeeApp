@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-addemployee',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddemployeeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private myapi:ApiService) { }
 
   emp_code=""
   name=""
@@ -26,6 +27,12 @@ export class AddemployeeComponent implements OnInit {
       "companyName":this.companyName
     }
     console.log(data)
+    this.myapi.addEmployee(data).subscribe(
+      (response)=>{
+        console.log(response)
+        alert("Added")
+      }
+    )
   }
 
   ngOnInit(): void {
